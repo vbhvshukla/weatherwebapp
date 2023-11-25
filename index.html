@@ -96,9 +96,8 @@
             else if (data.weather[0].main == "Tornado") {
                 document.querySelector(".weather-icon").src = "/assets/images/tornado.png";
             }
-            else {
-                document.querySelector(".weather-icon").src = "/assets/images/unknown.png";
-            }
+            document.querySelector('.weather').style.display =  "block";
+            
         }
     </script>
 </body>
