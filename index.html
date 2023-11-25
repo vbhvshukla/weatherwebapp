@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="/assets/images/clouds.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" class="inputfield" placeholder="Enter the city" spellcheck="false">
+            <button onclick="checkWeather(document.querySelector('input').value);"><img src="/assets/images/search.png"
+                    alt="search"></button>
+        </div>
+        <div class="weather">
+            <img src="/assets/images/rain.png" class="weather-icon" alt="">
+            <h1 class="temperature">22 °C</h1>
+            <h2 class="city">Varanasi</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="/assets/images/humidity.png" alt="">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="/assets/images/wind.png" alt="">
+                    <div>
+                        <p class="wind">15 knots</p>
+                        <p>Wind</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        async function checkWeather(city) {
+            const API_KEY = "bfc262b89f0cee95832ac5712ce1f05b";
+            const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}`;
+            const response = await fetch(BASE_URL + `&appid=${API_KEY}`);
+            var data = await response.json();
+            console.log(data);
+            document.querySelector(".temperature").innerHTML = `${data.main.temp}`;
+            document.querySelector(".city").innerHTML = `${data.name}`;
+            document.querySelector(".humidity").innerHTML = `${data.main.humidity}`;
+            document.querySelector(".wind").innerHTML = `${data.wind.speed}`;
+            console.log(data.weather[0].main);
+            if (data.weather[0].main == "Mist") {
+                document.querySelector(".weather-icon").src = "/assets/images/mist.png";
+            }
+            else if (data.weather[0].main == "Clouds") {
+                document.querySelector(".weather-icon").src = "/assets/images/clouds.png";
+            }
+            else if (data.weather[0].main == "Rain") {
+                document.querySelector(".weather-icon").src = "/assets/images/rain.png";
+            }
+            else if (data.weather[0].main == "Clear") {
+                document.querySelector(".weather-icon").src = "/assets/images/clear.png";
+            }
+            else if (data.weather[0].main == "Haze") {
+                document.querySelector(".weather-icon").src = "/assets/images/haze.png";
+            }
+            else if (data.weather[0].main == "Snow") {
+                document.querySelector(".weather-icon").src = "/assets/images/snow.png";
+            }
+            else if (data.weather[0].main == "Thunderstorm") {
+                document.querySelector(".weather-icon").src = "/assets/images/thunderstorm.png";
+            }
+            else if (data.weather[0].main == "Drizzle") {
+                document.querySelector(".weather-icon").src = "/assets/images/drizzle.png";
+            }
+            else if (data.weather[0].main == "Smoke") {
+                document.querySelector(".weather-icon").src = "/assets/images/smoke.png";
+            }
+            else if (data.weather[0].main == "Dust") {
+                document.querySelector(".weather-icon").src = "/assets/images/dust.png";
+            }
+            else if (data.weather[0].main == "Fog") {
+                document.querySelector(".weather-icon").src = "/assets/images/fog.png";
+            }
+            else if (data.weather[0].main == "Sand") {
+                document.querySelector(".weather-icon").src = "/assets/images/sand.png";
+            }
+            else if (data.weather[0].main == "Ash") {
+                document.querySelector(".weather-icon").src = "/assets/images/ash.png";
+            }
+            else if (data.weather[0].main == "Squall") {
+                document.querySelector(".weather-icon").src = "/assets/images/squall.png";
+            }
+            else if (data.weather[0].main == "Tornado") {
+                document.querySelector(".weather-icon").src = "/assets/images/tornado.png";
+            }
+            else {
+                document.querySelector(".weather-icon").src = "/assets/images/unknown.png";
+            }
+        }
+    </script>
+</body>
+
+</html>
